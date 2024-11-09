@@ -1,0 +1,149 @@
+{
+  "jobs": [
+    {
+      "id": "0",
+      "name": "PHP Job",
+      "image": "images/PHP.png",
+      "category": "Percept Ltd",
+      "featured": true,
+      "label": "main",
+      "price": "4 LPA",
+      "description": "Qualification: BE (IT/CSE), MCA, BCA, BSC (CS), MSC (CS) Skills: Excellent analytical power PHP HTML CSS Database- MySQL or MS SQL",
+      "comments": [
+        {
+          "rating": 5,
+          "comment": "Could you please add more information about the place of work?",
+          "author": "John Lemon",
+          "date": "2012-10-16T17:57:28.556094Z"
+        },
+        {
+          "rating": 4,
+          "comment": "I have worked here for 5 years. The experience is amazing!!",
+          "author": "Paul McVites",
+          "date": "2014-09-05T17:57:28.556094Z"
+        },
+        {
+          "author": "Simran Misra",
+          "rating": 4,
+          "comment": "Is there another way of contacting you?",
+          "date": "2020-11-10T09:59:24.886Z"
+        },
+        {
+          "author": "Simran",
+          "rating": 5,
+          "comment": "rrrrrrrrr",
+          "date": "2020-11-15T08:30:19.657Z"
+        },
+        {
+          "author": "Mary",
+          "rating": 5,
+          "comment": "Nice job opportunity",
+          "date": "2020-11-15T08:32:16.986Z"
+        }
+      ]
+        },
+        {
+          "id": "1",
+          "name": "NodeJs Job",
+          "image": "images/NodeJS.png",
+          "category": "iTours Operator Software",
+          "featured": false,
+          "label": "",
+          "price": "5 LPA",
+          "description": "Qualification: Should be BE/BTech/MTech/B.Sc/M.Sc (computer). Skills required: Coding skill, courses of nodes or any other similar.",
+          "comments": [
+            {
+              "rating": 5,
+              "comment": "Could you please add more information about the place of work?",
+              "author": "John Lemon",
+              "date": "2012-10-16T17:57:28.556094Z"
+            },
+            {
+              "rating": 4,
+              "comment": "How is the work environment?",
+              "author": "Paul McVites",
+              "date": "2014-09-05T17:57:28.556094Z"
+            },
+            {
+              "rating": 3,
+              "comment": "According to the pandemic, online interviews would be good.",
+              "author": "Michael Jaikishan",
+              "date": "2015-02-13T17:57:28.556094Z"
+            },
+            {
+              "rating": 4,
+              "comment": "I've applied here and I'm waiting for their call.",
+              "author": "Ringo Starry",
+              "date": "2013-12-02T17:57:28.556094Z"
+            },
+            {
+              "author": "John Kelly",
+              "rating": 5,
+              "comment": "How much time would it take for them to contact me?",
+              "date": "2020-12-04T13:00:15.745Z"
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Android Internship",
+          "image": "images/Android.png",
+          "category": "Percept Infosystem Consultants",
+          "featured": false,
+          "label": "",
+          "price": "6 LPA",
+          "description": 
+              "Percept Infosystem is software development and IT Training provider and Consultants company offering services in the area of software development.",
+           "comments":[
+            {
+               "rating" :5,
+                "comment":"Could you please add more information about the place of work?",
+                "author":"John Lemon",
+                "date":"2012-10-16T17:57:28.556094Z"
+             },
+             {
+                "rating" :4,
+                "comment":"Their interview is relly easy if you know stuff pretty well. :)",
+                "author":"Paul McVites",
+                "date":"2014-09-05T17:57:28.556094Z"
+             }
+           ]
+        } 
+      ]
+    ,
+        
+            "leadership":[
+              {
+                  "id":"0",
+                  "name":"Mary Gomez",
+                  "image":"images/blank.jpg",
+                  "designation":"Chief Executive Officer",
+                  "featured":false,
+                  "abbr":"CEO",
+                  "description":"Mary Gomez is the Chief Executive Officer. Her responsibilities include corporate communications, client engagement, and new technology initiatives."
+              },
+              {
+                  "id":"1",
+                  "name":"Dhanasekaran Witherspoon",
+                  "image":"images/blank.jpg",
+                  "designation":"Managing Director",
+                  "featured":false,
+                  "abbr":"MD",
+                  "description":"Our MD, Danny, as he is affectionately referred to by his colleagues, comes from a long established software company. His expertise lies in operational excellence."
+              }
+           ],
+            
+            "feedback":[
+             {
+                  "firstname":"Simran", 
+                  "lastname":"Misra", 
+                  "telnum":"0", 
+                  "email":"ddddd@gmail.com", 
+                  "agree":true, 
+                  "contacttype":"Tel", 
+                  "message":"Great!!", 
+                  "id":1
+             }
+           ]
+        
+        }

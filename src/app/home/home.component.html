@@ -1,0 +1,42 @@
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <div>
+    <h3>Please login to get access to your profile!!</h3>
+    <p>You can login as a job seeker or an employer representing a company or your own firm.</p>
+    <p>Just enter the correct username and password which is registered in the fields below to have access to your profile.</p>
+  </div>
+
+  <!-- Login Form -->
+  <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required />
+          <mat-error *ngIf="username.errors?.required">Username is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required />
+          <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
+        </mat-form-field>
+
+        <mat-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox><br><br>
+      </p>
+    </mat-dialog-content>
+
+    <!-- Job Seeker Button -->
+    <mat-dialog-actions>
+      <span class="flex-spacer"></span>
+      <button mat-button type="submit" name="submit1" class="background-primary text-floral-white"
+              [disabled]="loginForm.form.invalid">Login as Job Seeker</button>
+      <span style="padding-left: 10px;"></span>
+    </mat-dialog-actions>
+
+    <!-- Employer Button -->
+    <mat-dialog-actions>
+      <span class="flex-spacer"></span>
+      <button mat-button type="submit" name="submit2" class="background-primary text-floral-white"
+              [disabled]="loginForm.form.invalid">Login as Employer</button>
+    </mat-dialog-actions>
+  </form>
+
+</div>

@@ -1,0 +1,82 @@
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex>
+    <div>
+      <h3>Job Availability Information</h3>
+      <hr>
+    </div>
+  </div>
+
+  <div fxFlex *ngIf="!yourSubmission && !isDishSubmitPending" fxFlexOffset="20px" class="form-size">
+    <h3>Job Availability Details</h3>
+
+    <form novalidate [formGroup]="dishForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="name" placeholder="Job Name" type="text" required />
+          <mat-error *ngIf="formErrors.name">
+            {{ formErrors.name }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="half-width">
+          <input matInput formControlName="category" placeholder="Company Name" type="text" required />
+          <mat-error *ngIf="formErrors.category">
+            {{ formErrors.category }}
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="label" placeholder="Label" type="text" required />
+          <mat-error *ngIf="formErrors.label">
+            {{ formErrors.label }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="half-width">
+          <input matInput formControlName="price" placeholder="Package" type="text" required />
+          <mat-error *ngIf="formErrors.price">
+            {{ formErrors.price }}
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field class="full-width">
+          <textarea matInput formControlName="description" placeholder="Description of Job" rows=12 required></textarea>
+          <mat-error *ngIf="formErrors.description">
+            {{ formErrors.description }}
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="dishForm.invalid">Submit</button>
+    </form>
+
+    <br />
+  </div>
+
+  <!-- Submitting Spinner -->
+  <div fxFlex *ngIf="isFeedbackSubmitPending">
+    <mat-spinner></mat-spinner><h4>Submitting form . . . Please Wait!</h4>
+  </div>
+
+  <!-- Submission Confirmation -->
+  <div fxFlex *ngIf="yourSubmission">
+    <h2>Your Submission</h2>
+    <p>Job Name: {{ yourSubmission.name }}</p>
+    <p>Company name: {{ yourSubmission.category }}</p>
+    <p>Label: {{ yourSubmission.label }}</p>
+    <p>Package: {{ yourSubmission.package }}</p>
+    <p>Description: {{ yourSubmission.description }}</p><br />
+
+    <!-- Success Message -->
+    <p>Submitted successfully!!</p><br />
+    Click the button below to add information about another available job.
+    
+    <!-- Proceed Button -->
+    <button mat-button class="background-primary text-floral-white" routerLink="#">Proceed</button>
+  </div>
+
+</div>

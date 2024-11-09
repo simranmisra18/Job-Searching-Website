@@ -1,0 +1,104 @@
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility" [@expand]>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h3>{{dish.name | uppercase}}</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="{{BaseURL + dish.image}}" alt={{dish.name}}>
+      <mat-card-content>
+        <p>{{dish.category}}</p>
+        <p>{{dish.price}}</p>
+        <p>{{dish.description}}</p>
+        <br>
+        <h3>Leaders</h3>
+        <mat-list>
+          <mat-list-item *ngFor="let lead of leader">
+            <img matListAvatar src="{{BaseURL + lead.image}}" alt={{lead.name}}>
+            <h1 matLine>{{lead.name}}</h1>
+            <p matLine>
+              <span>{{lead.designation}}</span> 
+              <span>{{lead.description}}</span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+
+      <!-- Card Actions -->
+      <mat-card-actions>
+        <button mat-button [routerLink]="['/dishdetail', prev]">
+          <span class="fa fa-chevron-left fa-lg"></span>
+        </button>
+
+        <!-- Additional Buttons -->
+        <button mat-button (click)="goBack()">BACK</button>
+        <button mat-button (click)="onApply()">APPLY</button>
+        <button mat-button>SHARE</button>
+
+        <!-- Spacer and Next Button -->
+        <span class="flex-spacer"></span>
+        <button mat-button [routerLink]="['/dishdetail', next]">
+          <span class="fa fa-chevron-right fa-lg"></span>
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div [hidden]="dish">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+
+</div>
+
+<div fxFlex="40" [@visibility]="visibility" [@expand]>
+  <!-- Comments Section -->
+  <mat-list *ngIf="dish">
+    <h1 mat-line>Post Queries/Comments</h1>
+
+    <!-- Display Comments -->
+    <mat-list-item *ngFor="let comment of dish.comments">
+      <p mat-line>{{comment.comment}}</p>
+      <p mat-line>--- {{comment.author}} {{comment.date | date}}</p>
+    </mat-list-item>
+
+    <!-- Form to Submit Comments -->
+    <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+      <!-- Author Input -->
+      <p><mat-form-field class="half-width">
+          <input matInput formControlName="author" placeholder="Name" type="text" required />
+          <!-- Error Handling for Author -->
+          <mat-error *ngIf="formErrors.author">{{ formErrors.author }}</mat-error></mat-form-field></p>
+
+      <!-- Comment Textarea -->
+      <p><mat-form-field class="full-width">
+          <textarea matInput formControlName="comment" placeholder="Your Queries/Comments" rows=12 required></textarea>
+          <!-- Error Handling for Comment -->
+          <mat-error *ngIf="formErrors.comment">{{ formErrors.comment }}</mat-error></mat-form-field></p>
+
+      <!-- Submit Button -->
+      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
+
+    </form>
+
+  </mat-list>
+
+  <!-- Loading Spinner for Error Handling -->
+  <div [hidden]="dish || errMess">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+
+  <!-- Error Message Display -->
+  <div fxFlex *ngIf="errMess">
+    <h2>Error</h2><h4>{{errMess}}</h4>
+  </div>
+
+</div>

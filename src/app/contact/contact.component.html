@@ -1,0 +1,185 @@
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex>
+    <div>
+      <h3>Job Seeker Information</h3>
+      <hr>
+    </div>
+  </div>
+
+  <div fxFlex *ngIf="!isFeedbackSubmitPending && !yourSubmission" fxFlexOffset="20px" class="form-size" [@expand]>
+    <h3>Please fill your personal below:</h3>
+    <form novalidate [formGroup]="feedbackForm" #form="ngForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+          <mat-error *ngIf="feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched">
+            First name is required
+          </mat-error>
+          <mat-error *ngIf="formErrors.firstname">
+            {{ formErrors.firstname }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="half-width">
+          <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+          <mat-error *ngIf="feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched">
+            Last name is required
+          </mat-error>
+          <mat-error *ngIf="formErrors.lastname">
+            {{ formErrors.lastname }}
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" pattern="[0-9]*" required>
+          <mat-error *ngIf="feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched">
+            Tel num is required
+          </mat-error>
+          <mat-error *ngIf="formErrors.telnum">
+            {{ formErrors.telnum }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="half-width">
+          <input matInput formControlName="email" placeholder="Email" type="email" email required>
+          <mat-error *ngIf="feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="formErrors.email">
+            {{ formErrors.email }}
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <table class="form-size">
+        <td>
+          <mat-slide-toggle formControlName="agree">May we contact you?</mat-slide-toggle>
+        </td>
+
+        <td>
+          <mat-select placeholder="How?" formControlName="contacttype">
+            <mat-option *ngFor="let ctype of contactType" [value]="ctype">{{ ctype }}</mat-option>
+          </mat-select>
+        </td>
+      </table>
+
+      <!-- Qualification and Branch Selection -->
+      <p>Select your latest qualification:</p>
+      <select name="degree" id="degree">
+        <option value="SSC">SSC</option>
+        <option value="HSC">HSC</option>
+        <option value="Btech">Btech</option>
+        <option value="Mtech">Mtech</option>
+        <option value="MBA">MBA/Mtech</option>
+        <option value="PhD">PhD</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <!-- Branch Selection -->
+      Select your Branch:
+      <select name="branch" id="branch">
+        <option value="CSE">Computer Science and Engineering</option>
+        <option value="IT">Information Technology</option>
+        <option value="Civil">Civil</option>
+        <option value="Mechanical">Mechanical</option>
+        <option value="ENTC">Electronics and Telecommunication</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <!-- Institute and GPA -->
+      <p>Select your skills:</p> 
+    <!-- Skills Checkboxes -->
+<p>
+  <mat-checkbox name="skills1">Java</mat-checkbox>
+</p>
+<p>
+  <mat-checkbox name="skills1">C/C++</mat-checkbox>
+</p>
+<p>
+  <mat-checkbox name="skills1">HTML</mat-checkbox>
+</p>
+<p>
+  <mat-checkbox name="skills1">JavaScript/CSS</mat-checkbox>
+</p>
+<p>
+  <mat-checkbox name="skills1">Python</mat-checkbox>
+</p>
+
+<!-- Additional Skills Textarea -->
+<mat-form-field class="full-width">
+  <textarea matInput formControlName="message" placeholder="Enter Your Additional Skills" rows="6"></textarea>
+</mat-form-field>
+
+<!-- File Upload -->
+<p>Click on the "Choose File" button to upload your Resume:</p>
+<input type="file" id="myFile" name="filename">
+
+<br><br>
+
+<!-- Submit Button -->
+<button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
+
+<!-- Submitting Spinner -->
+<div fxFlex *ngIf="isFeedbackSubmitPending">
+  <mat-spinner></mat-spinner><h4>Submitting form . . . Please Wait!</h4>
+</div>
+
+<!-- Submission Confirmation -->
+<div fxFlex *ngIf="yourSubmission" [@expand]>
+  <h2>Your Submission</h2>
+  <p>First Name: {{ yourSubmission.firstname }}</p>
+  <p>Last Name: {{ yourSubmission.lastname }}</p>
+  <p>Tel. Number: {{ yourSubmission.telnum }}</p>
+  <p>Email: {{ yourSubmission.email }}</p>
+  <p>Contact You?: {{ yourSubmission.agree }}</p>
+  <p>How?: {{ yourSubmission.contacttype }}</p>
+  <p>Additional Skills: {{ yourSubmission.message }}</p><br/>
+  <p>Resume is submitted successfully!</p>
+
+  <!-- Proceed Button -->
+  <p>Click on the button below to view the list of jobs available:</p>
+  <button mat-button class="background-primary text-floral-white" routerLink="/menu">Proceed</button>
+</div>
+
+<!-- Motivational Quote -->
+<div fxFlex>
+  <mat-card>
+    <blockquote>
+      <h3>Choose a job you love, and you never have to work a day in your life.</h3>
+      <footer>-- Confucius</footer>
+    </blockquote>
+  </mat-card>
+</div>
+
+<!-- Job Seeker Information Form -->
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex *ngIf="!isFeedbackSubmitPending && !yourSubmission" fxFlexOffset="20px" class="form-size" [@expand]>
+    <h3>Please fill your personal details below:</h3>
+
+    <!-- Form Fields -->
+    <form novalidate [formGroup]="feedbackForm" #form="ngForm" (ngSubmit)="onSubmit()">
+      <!-- First Name Field -->
+      <p><mat-form-field class="half-width">
+        <input matInput formControlName="firstname" placeholder="First Name" type="text" required/>
+        <!-- Error Handling for First Name -->
+        <mat-error *ngIf="feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched">
+          First name is required
+        </mat-error>
+        <!-- Custom Error Handling for First Name -->
+        <mat-error *ngIf="formErrors.firstname">{{ formErrors.firstname }}</mat-error></mat-form-field></p>
+
+      <!-- Last Name Field -->
+      <p><mat-form-field class="half-width">
+        <input matInput formControlName="lastname" placeholder="Last Name" type="text" required/>
+        <!-- Error Handling for Last Name -->
+        <mat-error *ngIf="feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched">
+          Last name is required
+        </mat-error></mat-form-field></p>
+
+      <!-- Other Form Fields and Submission Logic Here -->
+
+    </form><!-- End of Form -->
+  </div><!-- End of Form Container-->
+</div><!-- End of Main Container-->

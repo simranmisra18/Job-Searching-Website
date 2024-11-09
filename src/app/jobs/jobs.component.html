@@ -1,0 +1,85 @@
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex>
+    <div>
+      <h3>Jobs Available</h3>
+      <hr>
+    </div>
+  </div>
+
+  <!-- For router link -->
+  <div fxFlex *ngIf="dishes" [@expand]>
+    <!-- ngIf means that show this div only when "dishes" is not a null value -->
+    <mat-grid-list cols="2" rowHeight="200px">
+      <!-- Treated as one unit -->
+      <!-- mat-list-item is similar to <li> in HTML -->
+      <!-- ngFor allows to iterate over a list of items -->
+      <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]" appHighlight>
+        <img height="200px" src="{{BaseURL + dish.image}}" alt="{{dish.name}}">
+        <mat-grid-tile-footer>
+          <h1 matLine>{{dish.name | uppercase}}</h1>
+          <!-- uppercase: Change name to uppercase. | is called Angular pipe -->
+          <span>{{dish.description}}</span>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div fxFlex [hidden]="dishes || errMess">
+    <!-- If dishes is null, then show this -->
+    <mat-spinner></mat-spinner><h4>Loading... Please wait</h4>
+  </div>
+
+  <!-- Error Message Display -->
+  <div fxFlex *ngIf="errMess">
+    <h2>Error</h2><h4>{{errMess}}</h4>
+  </div>
+</div>
+
+<!-- Login Form Section -->
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <div>
+    <h3>Please login to get access to your profile!!</h3>
+    <p>You can login as a job seeker or an employer representing a company or your own firm.</p>
+    <p>Just enter the correct username and password which is registered in the fields below to have access to your profile.</p>
+  </div>
+
+  <!-- Login Form -->
+  <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+      <p>
+        <!-- Username Field -->
+        <mat-form-field>
+          <input matInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required />
+          <mat-error *ngIf="username.errors?.required">Username is required</mat-error>
+        </mat-form-field>
+
+        <!-- Password Field -->
+        <mat-form-field>
+          <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required />
+          <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
+        </mat-form-field>
+
+        <!-- Remember Me Checkbox -->
+        <mat-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox><br><br>
+      </p>
+    </mat-dialog-content>
+
+    <!-- Job Seeker Login Button -->
+    <mat-dialog-actions>
+      <span class="flex-spacer"></span>
+      <button mat-button type="submit" name="submit1" class="background-primary text-floral-white"
+              [disabled]="loginForm.form.invalid">Login as Job Seeker</button>
+      <span style="padding-left: 10px;"></span>
+    </mat-dialog-actions>
+
+    <!-- Employer Login Button -->
+    <mat-dialog-actions>
+      <span class="flex-spacer"></span>
+      <button mat-button type="submit" name="submit2" class="background-primary text-floral-white"
+              [disabled]="loginForm.form.invalid">Login as Employer</button>
+    </mat-dialog-actions>
+
+  </form>
+
+</div>
